@@ -1,0 +1,10 @@
+[package]
+name = "bliss"
+version = "0.1.0"
+authors = ["Avery Wagar <ajmw.subs@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+reqwest = "*"
+rayon = "*"
+dirs = "1.0"
