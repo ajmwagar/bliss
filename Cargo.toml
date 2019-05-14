@@ -10,6 +10,6 @@ edition = "2018"
 
 [dependencies]
 reqwest = "*"
-rayon = "*"
+# rayon = "*"
 dirs = "1.0"
-clap = "*"
+clap = "2.33.0"
