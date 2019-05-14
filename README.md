@@ -10,7 +10,7 @@
 
 ## Features
 
-- Pulls `.gitignore`s from [gitignore.io](https://gitignore.io).
+- Pulls `.gitignore` templates from [gitignore.io](https://gitignore.io).
 - Built-in caching allows for **offline use** and **blazing fast** speeds. (After inital download of `.gitignore` templates)
 - Simple, stateless CLI
 - Zero system-dependencies (standalone binary) 
