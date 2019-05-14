@@ -30,7 +30,9 @@ bliss rust >> .gitignore # Append rust's .gitignore to ./.gitignore
 
 bliss help # Show help menu
 
-bliss help cache # Shows help for cache command
+bliss cache clear # Clear the cache and exit
+
+bliss cache update # Update currently downloaded templates and support list
 ```
 
 
