@@ -9,7 +9,7 @@
 - Pulls `.gitignore`s from [gitignore.io](https://gitignore.io).
 - Built-in caching allows for **offline use** and **blazing fast** speeds.
 - Simple, stateless CLI
-- Multi-threading and Parallelism via [`rayon`](https://github.com/rayon-rs/rayon)
+<!-- - Multi-threading and Parallelism via [`rayon`](https://github.com/rayon-rs/rayon)-->
 
 ## ⚒ Usage
 
