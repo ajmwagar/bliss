@@ -9,7 +9,7 @@ authors = ["Avery Wagar <ajmw.subs@gmail.com>"]
 edition = "2018"
 
 [dependencies]
-reqwest = "*"
+reqwest = "0.9.16"
 # rayon = "*"
 dirs = "1.0"
 clap = "2.33.0"
