@@ -126,7 +126,7 @@ pub struct Cache {
     /// Supported languages
     supported_langs: Option<Vec<String>>,
     /// List of gitignores stored in cache
-    gitignores: HashMap<String, Gitignore>
+    pub gitignores: HashMap<String, Gitignore>
 
 }
 
