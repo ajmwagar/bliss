@@ -1,5 +1,8 @@
 ![Bliss](./logo/logo.png)
 
+[![dependency status](https://deps.rs/repo/github/ajmwagar/bliss/status.svg)](https://deps.rs/repo/github/ajmwagar/bliss)
+
+
 > **Ignorance is bliss!** Ignore your `.gitignore`.
 
 *Bliss* is a "batteries included" `.gitignore` management tool.
