@@ -21,7 +21,7 @@ impl Bliss {
         let cache = match Cache::from() {
             Ok(cache) => cache,
             Err(e) => {
-                eprintln!("Error loading cache ($HOME/.cache/bliss): {}", e);
+                // eprintln!("Error loading cache ($HOME/.cache/bliss): {}", e);
                 match Cache::new() {
                     Ok(cache) => cache,
                     Err(_e) => {
