@@ -9,15 +9,15 @@ fn main() -> Result<(), Box<dyn Error>> {
                           .author("Avery Wagar <ajmw.subs@gmail.com>")
                           .about("Ignorance is bliss! Ignore your .gitignore")
                           .arg(Arg::with_name("LANGUAGE")
-                               .help("Sets the input file to use")
+                               .help("Set the languages to download .gitignores for (i.e. \"rust,python\")")
                                .required(false)
                                .index(1))
                           .subcommand(SubCommand::with_name("list")
-                                      .about("list supported languages"))
+                                      .about("List supported languages"))
                           .subcommand(SubCommand::with_name("cache")
-                                      .about("manage bliss cache")
-                                      .subcommand(SubCommand::with_name("clear").about("clear bliss cache"))
-                                      .subcommand(SubCommand::with_name("update").about("update bliss cache")))
+                                      .about("Manage bliss cache")
+                                      .subcommand(SubCommand::with_name("clear").about("Clear bliss cache"))
+                                      .subcommand(SubCommand::with_name("update").about("Update bliss cache")))
                           .get_matches();
 
 
