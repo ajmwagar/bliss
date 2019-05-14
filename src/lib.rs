@@ -20,7 +20,10 @@ impl Bliss {
 
         let cache = match Cache::from() {
             Ok(cache) => cache,
-            Err(_e) => Cache::new()
+            Err(e) => {
+                eprintln!("Error loading cache: {}", e);
+                Cache::new()
+            }
         };
 
         Bliss {
@@ -80,13 +83,10 @@ impl Bliss {
 
         // TODO: Error handling
         let contents = reqwest::get(&url).unwrap().text().unwrap();
+
         if contents.contains("undefined") {
             return None;
         }
-
-        // Some(contents);
-
-        // println!("{}", contents);
 
         let gi = Gitignore { ignored_paths: contents.split("\n").map(|x| x.to_string()).collect() };
 
@@ -98,7 +98,7 @@ impl Bliss {
 }
 
 /// A gitignore
-#[derive(Clone)]
+#[derive(Clone, Debug)]
 pub struct Gitignore {
     /// Paths to ignore
     ignored_paths: Vec<String>,
@@ -109,6 +109,15 @@ impl std::fmt::Display for Gitignore {
         writeln!(formatter, "{}", self.ignored_paths.join("\n"))?;
 
         Ok(())
+    }
+}
+
+impl Gitignore {
+    /// Create a gitignore from a string
+    pub fn from_string(string: &str) -> Self {
+        Gitignore {
+            ignored_paths: string.split("\n").map(|x| x.to_string()).collect()
+        }
     }
 }
 
@@ -180,13 +189,40 @@ impl Cache {
 
         File::open(format!("{}{}", path, CACHE_LANGS_FILE))?.read_to_string(&mut supported_langs)?;
 
+
         // Read gitignore templates
+        let mut gi = HashMap::new();
+
+
+        for entry in std::fs::read_dir(format!("{}/bliss/ignores", cache.to_string_lossy()))? {
+            let entry = entry?;
+            let path = entry.path();
+
+            if !path.is_dir() {
+
+                let mut contents = String::new();
+
+                let mut file = File::open(path.clone())?;
+
+                file.read_to_string(&mut contents)?;
+
+                // Get filename and filetype
+                let filename = path.to_str().unwrap().split("/").collect::<Vec<&str>>();
+
+                let filename = filename[filename.len() - 1];
+
+                let ft = filename.split(".").collect::<Vec<&str>>()[0].to_string();
+
+                gi.insert(ft, Gitignore::from_string(&contents));
+
+            } 
+        }
 
         Ok(Cache {
             supported_langs: Some(supported_langs.split("\n")
                                  .map(|x| x.to_string())
                                  .collect()),
-            gitignores: HashMap::new(),
+            gitignores: gi,
         })
     }
 }
