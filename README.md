@@ -38,6 +38,7 @@ cargo install bliss
 
 - [x] `.gitignore` Caching
 - [x] Better cache management
+- [x] Better error handling/messages
 - [  ] More commands for handling common issues and mistakes with `.gitignore`s.
-- [  ] Better error handling/messages
 - [  ] MOAR SPEED!!!!
+- [  ] The heat-death of the universe...
