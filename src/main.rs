@@ -31,7 +31,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     // Cache modification
     else if let Some(matches) = matches.subcommand_matches("cache") {
         // Clear cache
-        if let Some(matches) = matches.subcommand_matches("clear") {
+        if let Some(_matches) = matches.subcommand_matches("clear") {
             // TODO Clear cache
             println!("Clearing cache...");
 
@@ -41,7 +41,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             std::process::exit(0);
         }
         // Update cache
-        else if let Some(matches) = matches.subcommand_matches("update") {
+        else if let Some(_matches) = matches.subcommand_matches("update") {
             println!("Updating cache...");
 
             // Update supported languages
