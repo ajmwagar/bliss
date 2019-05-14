@@ -7,8 +7,9 @@
 ## Features
 
 - Pulls `.gitignore`s from [gitignore.io](https://gitignore.io).
-- Built-in caching allows for **offline use** and **blazing fast** speeds.
+- Built-in caching allows for **offline use** and **blazing fast** speeds. (After inital download of `.gitignore` templates)
 - Simple, stateless CLI
+- Zero system-dependencies (standalone binary) 
 <!-- - Multi-threading and Parallelism via [`rayon`](https://github.com/rayon-rs/rayon)-->
 
 ## ⚒ Usage
@@ -39,6 +40,6 @@ cargo install bliss
 - [x] `.gitignore` Caching
 - [x] Better cache management
 - [x] Better error handling/messages
-- [ ] More commands for handling common issues and mistakes with `.gitignore`s.
+- [ ] More commands for handling common issues and mistakes with `.gitignore` files.
 - [ ] MOAR SPEED!!!!
 - [ ] The heat-death of the universe...
