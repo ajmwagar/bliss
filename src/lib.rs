@@ -21,8 +21,14 @@ impl Bliss {
         let cache = match Cache::from() {
             Ok(cache) => cache,
             Err(e) => {
-                eprintln!("Error loading cache: {}", e);
-                Cache::new()
+                eprintln!("Error loading cache ($HOME/.cache/bliss): {}", e);
+                match Cache::new() {
+                    Ok(cache) => cache,
+                    Err(_e) => {
+                        eprintln!("Error connecting to https://gitignore.io, please check your network settings and try again.");
+                        std::process::exit(1);
+                    }
+                }
             }
         };
 
@@ -132,11 +138,11 @@ pub struct Cache {
 
 impl Cache {
     /// Create a new cache
-    pub fn new() -> Self {
-        Cache {
-            supported_langs: Some(Bliss::get_lang_list().unwrap()),
+    pub fn new() -> Result<Self, Box<dyn Error>> {
+        Ok(Cache {
+            supported_langs: Some(Bliss::get_lang_list()?),
             gitignores: HashMap::new()
-        }
+        })
     }
 
     /// Save cache to fs
