@@ -49,6 +49,8 @@ fn main() -> Result<(), Box<dyn Error>> {
 
             // Update .gitignore templates
             for lang in bliss.cache.gitignores.clone().keys() {
+                println!("Updating {} template...", lang);
+                bliss.cache.gitignores.remove(lang);
                 bliss.get_lang_gitignore(lang);
             }
         }
