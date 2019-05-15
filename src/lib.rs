@@ -21,7 +21,7 @@ impl Bliss {
         let cache = match Cache::from() {
             Ok(cache) => cache,
             Err(e) => {
-                eprintln!("Error loading cache ($HOME/.cache/bliss): {}", e);
+                // eprintln!("Error loading cache ($HOME/.cache/bliss): {}", e);
                 match Cache::new() {
                     Ok(cache) => cache,
                     Err(_e) => {
@@ -74,7 +74,7 @@ impl Bliss {
         // TODO Use good result
         let langs = self.supported_langs().unwrap();
 
-        if langs.contains(&lang.to_string()) { true } else { false }
+        langs.contains(&lang.to_string())
     } 
 
     /// Get the respective `.gitignore` for a given language
@@ -159,18 +159,20 @@ impl Cache {
 
         create_dir_all(format!("{}{}", path, "ignores"))?;
 
-        // Write supported languages
+        // Write supported languages to file
         let mut lang_list = File::create(format!("{}{}", path, CACHE_LANGS_FILE))?;
 
         lang_list.write_all(self.supported_langs.clone().unwrap().join("\n").as_bytes())?;
 
-        // TODO use rayon
+
+
         // Save gitignore templates
+        // TODO use rayon
         self.gitignores.iter().for_each(|(lang, ignore)| {
             //TODO Correct error handling
             let mut file = File::create(format!("{}ignores/{}.gitignore", path, lang)).unwrap();
 
-            file.write_all(ignore.ignored_paths.join("\n").as_bytes());
+            file.write_all(ignore.ignored_paths.join("\n").as_bytes()).unwrap();
         });
 
         Ok(())

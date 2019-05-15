@@ -9,15 +9,15 @@ fn main() -> Result<(), Box<dyn Error>> {
                           .author("Avery Wagar <ajmw.subs@gmail.com>")
                           .about("Ignorance is bliss! Ignore your .gitignore")
                           .arg(Arg::with_name("LANGUAGE")
-                               .help("Sets the input file to use")
+                               .help("Set the languages to download .gitignores for (i.e. \"rust,python\")")
                                .required(false)
                                .index(1))
                           .subcommand(SubCommand::with_name("list")
-                                      .about("list supported languages"))
+                                      .about("List supported languages"))
                           .subcommand(SubCommand::with_name("cache")
-                                      .about("manage bliss cache")
-                                      .subcommand(SubCommand::with_name("clear").about("clear bliss cache"))
-                                      .subcommand(SubCommand::with_name("update").about("update bliss cache")))
+                                      .about("Manage bliss cache")
+                                      .subcommand(SubCommand::with_name("clear").about("Clear bliss cache"))
+                                      .subcommand(SubCommand::with_name("update").about("Update bliss cache")))
                           .get_matches();
 
 
@@ -31,7 +31,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     // Cache modification
     else if let Some(matches) = matches.subcommand_matches("cache") {
         // Clear cache
-        if let Some(matches) = matches.subcommand_matches("clear") {
+        if let Some(_matches) = matches.subcommand_matches("clear") {
             // TODO Clear cache
             println!("Clearing cache...");
 
@@ -41,7 +41,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             std::process::exit(0);
         }
         // Update cache
-        else if let Some(matches) = matches.subcommand_matches("update") {
+        else if let Some(_matches) = matches.subcommand_matches("update") {
             println!("Updating cache...");
 
             // Update supported languages
