@@ -146,7 +146,6 @@ impl Cache {
     }
 
     /// Save cache to fs
-    #[cfg(unix)]
     pub fn save(&self) -> Result<(), Box<dyn Error>> {
         // Get cache
         let cache = dirs::cache_dir().unwrap(); 
@@ -180,7 +179,6 @@ impl Cache {
     }
 
     /// Read Cache from fs
-    #[cfg(unix)]
     pub fn from() -> Result<Self, Box<dyn Error>> {
         // Get cache
         let cache = dirs::cache_dir().unwrap(); 
