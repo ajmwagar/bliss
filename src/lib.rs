@@ -74,7 +74,7 @@ impl Bliss {
         // TODO Use good result
         let langs = self.supported_langs().unwrap();
 
-        if langs.contains(&lang.to_string()) { true } else { false }
+        langs.contains(&lang.to_string())
     } 
 
     /// Get the respective `.gitignore` for a given language
