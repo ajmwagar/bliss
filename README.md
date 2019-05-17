@@ -1,6 +1,7 @@
 ![Bliss](./logo/logo.png)
 
 [![Crates.io](https://img.shields.io/crates/v/bliss.svg)](https://crates.io/crates/bliss)
+[![Docs.rs](https://docs.rs/bliss/badge.svg)](https://docs.rs/bliss)
 [![Build Status](https://travis-ci.org/ajmwagar/bliss.svg?branch=master)](https://travis-ci.org/ajmwagar/bliss)
 [![dependency status](https://deps.rs/repo/github/ajmwagar/bliss/status.svg)](https://deps.rs/repo/github/ajmwagar/bliss)
 
