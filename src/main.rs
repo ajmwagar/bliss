@@ -49,12 +49,18 @@ fn main() -> Result<(), Box<dyn Error>> {
 
             // Update .gitignore templates
             for lang in bliss.cache.gitignores.clone().keys() {
+                println!("Updating {} template...", lang);
+                bliss.cache.gitignores.remove(lang);
                 bliss.get_lang_gitignore(lang);
             }
         }
     }
     else {
         for lang in matches.value_of("LANGUAGE").unwrap_or("").split(" ").collect::<Vec<_>>().join("").split(",") {
+            if lang == "" {
+                println!("Try: bliss help");
+                break;
+            }
             if bliss.is_supported(lang){
                 let ignore = bliss.get_lang_gitignore(lang); 
                 print!("{}", ignore.unwrap());

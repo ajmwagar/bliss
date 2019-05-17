@@ -8,6 +8,31 @@ use std::io::prelude::*;
 /// Filename for list of supported languages
 const CACHE_LANGS_FILE: &str = "bliss_langs";
 
+
+/// Commands to cleanup git repositories
+pub struct Ignorance {
+}
+
+impl Ignorance {
+    /// Create a new instance of Ignorance
+    pub fn new() -> Result<Self, Box<dyn Error>> {
+        Ok(Ignorance {})
+    }
+
+    /// Remove all files with "git rm --cached <file>" from gitignore
+    pub fn remove_gitignore(&self) -> Result<(), Box<dyn Error>> {
+        unimplemented!();
+    }
+
+    /// Duplicate the current .gitignore accross all branches (that do not have a .gitignore) and
+    /// commit
+    pub fn duplicate_gi_branch() -> Result<(), Box<dyn Error>> {
+        unimplemented!();
+    }
+}
+
+
+
 /// Bliss, gitignore client
 pub struct Bliss {
     /// Cache of gitignore info
@@ -18,10 +43,12 @@ impl Bliss {
     /// Create a new bliss client
     pub fn new() -> Self {
 
+        // Either get the cache from FS or create a new one and populate it from gitignore.io
         let cache = match Cache::from() {
             Ok(cache) => cache,
-            Err(e) => {
+            Err(_e) => {
                 // eprintln!("Error loading cache ($HOME/.cache/bliss): {}", e);
+                // Create new cache
                 match Cache::new() {
                     Ok(cache) => cache,
                     Err(_e) => {
@@ -74,7 +101,7 @@ impl Bliss {
         // TODO Use good result
         let langs = self.supported_langs().unwrap();
 
-        if langs.contains(&lang.to_string()) { true } else { false }
+        langs.contains(&lang.to_string())
     } 
 
     /// Get the respective `.gitignore` for a given language
@@ -146,7 +173,6 @@ impl Cache {
     }
 
     /// Save cache to fs
-    #[cfg(unix)]
     pub fn save(&self) -> Result<(), Box<dyn Error>> {
         // Get cache
         let cache = dirs::cache_dir().unwrap(); 
@@ -180,7 +206,6 @@ impl Cache {
     }
 
     /// Read Cache from fs
-    #[cfg(unix)]
     pub fn from() -> Result<Self, Box<dyn Error>> {
         // Get cache
         let cache = dirs::cache_dir().unwrap(); 
